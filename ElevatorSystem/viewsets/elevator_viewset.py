@@ -17,7 +17,10 @@ class ElevatorViewSet(viewsets.ModelViewSet):
     def update_status(self, request, elevator_id):
         try:
             elevator = self.queryset.get(elevator_id = elevator_id)
-            """update logic to be implemented"""
+            updated_data = request.data
+            elevator.is_operational = updated_data["is_operational"]
+            elevator.is_door_open = updated_data["is_door_open"]
+            elevator.save()
             serializer = self.get_serializer(elevator)
             return Response(serializer.data)
         except ElevatorModel.DoesNotExist:
@@ -40,7 +43,6 @@ class ElevatorViewSet(viewsets.ModelViewSet):
         requests_for_elevator = all_requests.filter(elevator_id = elevator_id)
         serializer = ElevatorRequestSerializer(requests_for_elevator, many=True)
         return Response(serializer.data)
-        
 
 
 
