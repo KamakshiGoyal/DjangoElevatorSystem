@@ -30,7 +30,7 @@ class ElevatorSystemViewSet(viewsets.ModelViewSet):
                     self.createElevators(ElevatorSystemModel.objects.first())
                     return Response(serializer.data)
                 else:
-                     return Response({"Some Error Occured while creating the database"})
+                     return Response({"Invalid Elevator System Model"})
                           
             serializer = self.get_serializer(self.queryset, many = True) 
             return Response(serializer.data)
@@ -41,7 +41,7 @@ class ElevatorSystemViewSet(viewsets.ModelViewSet):
          elevator_count = elevator_system.get().elevator_count
 
          if elevator_count :
-            
+
             for elevator_id in range(elevator_count):
                 ElevatorModel.objects.create(elevator_system = elevator_system, elevator_id = elevator_id + 1)
         
