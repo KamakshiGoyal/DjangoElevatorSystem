@@ -17,7 +17,7 @@ source venv/bin/activate
 
 2. Packages and requirements - to install the required pakages run the following code.
 
-pip install /requirements.txt
+pip install -r requirements.txt
 
 3. Runing the server - use the following code to run the project.
 
